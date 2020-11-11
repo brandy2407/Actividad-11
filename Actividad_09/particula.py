@@ -1,7 +1,7 @@
 from .algoritmos import distancia_euclidiana
 class Particula:
 
-   def __init__(self,Id, x_1,y_1,x_2,y_2,velocidad,red,green,blue,distancia):
+   def __init__(self,Id, x_1,y_1,x_2,y_2,velocidad,red,green,blue):
       self.__id = Id
       self.__origen_x= x_1
       self.__origen_y= y_1
@@ -28,16 +28,56 @@ class Particula:
          'Blue: '+str(self.__blue)+'\n'+
          'Distancia: '+str(self.__distancia)+'\n'
             )
-      
+   
+   @property
+   def id(self):
+      return self.__id
+
+   @property
+   def origen_x(self):
+      return self.__origen_x
+
+   @property
+   def origen_y(self):
+      return self.__origen_y
+
+   @property
+   def destino_x(self):
+      return self.__destino_x
+   
+   @property
+   def destino_y(self):
+      return self.__destino_y
+
+   @property
+   def velocidad(self):
+      return self.__velocidad
+
+   @property
+   def green(self):
+      return self.__green
+   
+   @property
+   def red(self):
+      return self.__red
+
+   @property
+   def blue(self):
+      return self.__blue
+
+   @property
+   def distancia(self):
+      return self.__distancia
+   
    def to_dict(self):
       return{
          "Id": self.__id,
-         "Origen en y": self.__origen_y,
-         "Origen en x":self.__origen_x,
-         "Destino en x": self.__destino_x,
-         "Destino en y": self.__destino_y,
-         "Velocidad": self.__velocidad,
-         "Red": self.__red,
-         "Green": self.__green,
-         "Blue": self.__blue
+         "x_1":self.__origen_x,
+         "y_1": self.__origen_y,
+         "x_2": self.__destino_x,
+         "y_2": self.__destino_y,
+         "velocidad": self.__velocidad,
+         "red": self.__red,
+         "green": self.__green,
+         "blue": self.__blue
          }

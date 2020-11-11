@@ -10,6 +10,23 @@ class Administrar:
         return "".join(
             str(particula) + '\n' for particula in self.administrar
         )
+
+    def __len__(self):
+        return (len(self.administrar))
+    
+    def __iter__(self):
+        self.cont = 0
+        return self
+    
+    def __next__(self):
+        if self.cont < len(self.administrar):
+            particula = self.administrar[self.cont]
+            self.cont += 1
+            return particula
+        else:
+            raise StopIteration
+
+
     def agregar_inicio(self,particula):
         self.administrar.insert(0,particula)
 
@@ -34,6 +51,7 @@ class Administrar:
             with open(ubicacion, 'r') as archivo:
                 lista = json.load(archivo)
                 self.administrar = [Particula(**particula) for particula in lista]
+            return 1
         except:
            return 0
 
