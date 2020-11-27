@@ -25,8 +25,7 @@ class Administrar:
             return particula
         else:
             raise StopIteration
-
-
+    
     def agregar_inicio(self,particula):
         self.administrar.insert(0,particula)
 
@@ -49,11 +48,19 @@ class Administrar:
     def abrir(self,ubicacion):
         try:
             with open(ubicacion, 'r') as archivo:
-                lista = json.load(archivo)
+                lista = json.load(archivo) 
                 self.administrar = [Particula(**particula) for particula in lista]
             return 1
         except:
+     
            return 0
 
-        
-    
+    def orden(self,des,ord):
+        if ord == "id":
+            self.administrar.sort(key=lambda particula: particula.id,reverse=des)
+        if ord == "velocidad":
+            self.administrar.sort(key=lambda particula: particula.velocidad,reverse=des)
+        if ord == "distancia":
+            self.administrar.sort(key=lambda particula: particula.distancia,reverse=des)
+
+     

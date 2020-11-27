@@ -27,7 +27,23 @@ class MainWindow(QMainWindow):
         
         self.scene = QGraphicsScene()
         self.ui.graphicsView.setScene(self.scene)
+
+        self.ui.id.clicked.connect(self.ordenar_id)
+        self.ui.velocidad.clicked.connect(self.ordenar_velocidad)
+        self.ui.distancia.clicked.connect(self.ordenar_distancia)
     
+
+    @Slot()
+    def ordenar_id(self):  
+        self.administrar.orden(False, "id")
+    @Slot()
+    def ordenar_velocidad(self):
+        self.administrar.orden(False,"velocidad")
+    @Slot()
+    def ordenar_distancia(self):
+        self.administrar.orden(True,"distancia")
+
+
     def wheelEvent(self, event):
         if event.delta() > 0:
             self.ui.graphicsView.scale(1.2, 1.2)
@@ -95,7 +111,7 @@ class MainWindow(QMainWindow):
                 encontrado = True
                 return
 
-        if not encontrado:
+        if encontrado == False:
             QMessageBox.warning(
                 self,
                 "Atención",
@@ -133,7 +149,6 @@ class MainWindow(QMainWindow):
             self.ui.tabla.setItem(row, 8, blue_wiedget)
             self.ui.tabla.setItem(row, 9, distancia_wiedget)
             row += 1
-
         
     @Slot()
     def action_abrir_archivo(self):
@@ -182,8 +197,8 @@ class MainWindow(QMainWindow):
 
     @Slot()
     def click_agregar_inicio(self):
-        id = self.ui.id_lineEdit.text()
-        origen_x = self.ui.origenx_spinBox.value()
+        id = int(self.ui.id_lineEdit.text())
+        origen_x = int(self.ui.origenx_spinBox.value())
         origen_y = self.ui.origeny_spinBox.value()
         destino_x = self.ui.destinox_spinBox.value()
         destino_y = self.ui.destinoy_spinBox.value()
@@ -196,7 +211,7 @@ class MainWindow(QMainWindow):
 
     @Slot()
     def click_agregar(self):
-        id = self.ui.id_lineEdit.text()
+        id = int(self.ui.id_lineEdit.text())
         origen_x = self.ui.origenx_spinBox.value()
         origen_y = self.ui.origeny_spinBox.value()
         destino_x = self.ui.destinox_spinBox.value()

@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(760, 482)
+        MainWindow.resize(760, 484)
         self.actionAbir = QAction(MainWindow)
         self.actionAbir.setObjectName(u"actionAbir")
         self.actionGuardar = QAction(MainWindow)
@@ -179,22 +179,37 @@ class Ui_MainWindow(object):
         self.tabla = QTableWidget(self.tab_2)
         self.tabla.setObjectName(u"tabla")
 
-        self.gridLayout_4.addWidget(self.tabla, 0, 0, 1, 3)
-
-        self.buscar_lineEdit = QLineEdit(self.tab_2)
-        self.buscar_lineEdit.setObjectName(u"buscar_lineEdit")
-
-        self.gridLayout_4.addWidget(self.buscar_lineEdit, 1, 0, 1, 1)
-
-        self.buscar_pushButton = QPushButton(self.tab_2)
-        self.buscar_pushButton.setObjectName(u"buscar_pushButton")
-
-        self.gridLayout_4.addWidget(self.buscar_pushButton, 1, 1, 1, 1)
+        self.gridLayout_4.addWidget(self.tabla, 0, 0, 1, 4)
 
         self.mostrar_tabla_pushButton_2 = QPushButton(self.tab_2)
         self.mostrar_tabla_pushButton_2.setObjectName(u"mostrar_tabla_pushButton_2")
 
-        self.gridLayout_4.addWidget(self.mostrar_tabla_pushButton_2, 1, 2, 1, 1)
+        self.gridLayout_4.addWidget(self.mostrar_tabla_pushButton_2, 1, 3, 1, 1)
+
+        self.buscar_lineEdit = QLineEdit(self.tab_2)
+        self.buscar_lineEdit.setObjectName(u"buscar_lineEdit")
+
+        self.gridLayout_4.addWidget(self.buscar_lineEdit, 1, 0, 1, 2)
+
+        self.buscar_pushButton = QPushButton(self.tab_2)
+        self.buscar_pushButton.setObjectName(u"buscar_pushButton")
+
+        self.gridLayout_4.addWidget(self.buscar_pushButton, 1, 2, 1, 1)
+
+        self.distancia = QPushButton(self.tab_2)
+        self.distancia.setObjectName(u"distancia")
+
+        self.gridLayout_4.addWidget(self.distancia, 2, 3, 1, 1)
+
+        self.id = QPushButton(self.tab_2)
+        self.id.setObjectName(u"id")
+
+        self.gridLayout_4.addWidget(self.id, 2, 1, 1, 1)
+
+        self.velocidad = QPushButton(self.tab_2)
+        self.velocidad.setObjectName(u"velocidad")
+
+        self.gridLayout_4.addWidget(self.velocidad, 2, 2, 1, 1)
 
         self.tabWidget.addTab(self.tab_2, "")
         self.bgh = QWidget()
@@ -218,7 +233,7 @@ class Ui_MainWindow(object):
 
         self.tabWidget.addTab(self.bgh, "")
 
-        self.gridLayout_3.addWidget(self.tabWidget, 0, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.tabWidget, 1, 0, 1, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
@@ -237,7 +252,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -269,13 +284,16 @@ class Ui_MainWindow(object):
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"Green ", None))
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"Distancia:", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"Agregar", None))
+        self.mostrar_tabla_pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Mostrar", None))
         self.buscar_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Id", None))
         self.buscar_pushButton.setText(QCoreApplication.translate("MainWindow", u"Buscar", None))
-        self.mostrar_tabla_pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Mostrar", None))
+        self.distancia.setText(QCoreApplication.translate("MainWindow", u"Distancia", None))
+        self.id.setText(QCoreApplication.translate("MainWindow", u"Id", None))
+        self.velocidad.setText(QCoreApplication.translate("MainWindow", u"Velocidad", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"Tabla", None))
         self.dibujar.setText(QCoreApplication.translate("MainWindow", u"Dibujar", None))
         self.limpiar.setText(QCoreApplication.translate("MainWindow", u"Limpiar", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.bgh), QCoreApplication.translate("MainWindow", u"Page", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.bgh), QCoreApplication.translate("MainWindow", u"Grafica", None))
         self.menuArchivo.setTitle(QCoreApplication.translate("MainWindow", u"Archivo ", None))
     # retranslateUi
 
