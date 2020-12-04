@@ -23,7 +23,7 @@ class MainWindow(QMainWindow):
 
         self.ui.mostrar_tabla_pushButton_2.clicked.connect(self.mostrar_tabla)
         self.ui.buscar_pushButton.clicked.connect(self.buscar_id)
-
+         
         self.ui.dibujar.clicked.connect(self.dibujar)
         self.ui.limpiar.clicked.connect(self.limpiar)
         
@@ -65,21 +65,21 @@ class MainWindow(QMainWindow):
         pen.setWidth(2)
         
         for i in self.administrar:
-            r = Particula.red
-            g = Particula.green
-            b = Particula.blue
+            r = i.red
+            g = i.green
+            b = i.blue
 
-            color = QColor(i.red, i.green, i.blue)
+            color = QColor(r, g, b)
             pen.setColor(color)
             
-            origen_x = Particula.origen_x
-            origen_y = Particula.origen_y
-            destino_x = Particula.destino_x
-            destino_y = Particula.destino_y
+            origenx = i.origen_x
+            origeny = i.origen_y
+            destinox = i.destino_x
+            destinoy = i.destino_y
 
-            self.scene.addEllipse(i.origen_x, i.origen_y, 5, 5, pen)
-            self.scene.addEllipse(i.destino_x, i.destino_y, 5, 5, pen)
-            self.scene.addLine( i.origen_x+5, i.origen_y+5, i.destino_x, i.destino_y, pen)
+            self.scene.addEllipse(origenx, origeny, 5, 5, pen)
+            self.scene.addEllipse(destinox, destinoy, 5, 5, pen)
+            self.scene.addLine(origenx, origeny, destinox, destinoy, pen)
 
     @Slot()
     def limpiar(self):
