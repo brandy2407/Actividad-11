@@ -16,8 +16,10 @@ class MainWindow(QMainWindow):
         self.ui.agregarfinal_pushButton.clicked.connect(self.click_agregar)
         self.ui.agregarinicio_pushButton.clicked.connect(self.click_agregar_inicio)
         self.ui.mostrar_pushButton.clicked.connect(self.click_mostrar)
+
         self.ui.actionAbir.triggered.connect(self.action_abrir_archivo)
         self.ui.actionGuardar.triggered.connect(self.action_guardar_archivo)
+        self.ui.actionGrafo.triggered.connect(self.mostrar_grafo)
 
         self.ui.mostrar_tabla_pushButton_2.clicked.connect(self.mostrar_tabla)
         self.ui.buscar_pushButton.clicked.connect(self.buscar_id)
@@ -31,6 +33,14 @@ class MainWindow(QMainWindow):
         self.ui.id.clicked.connect(self.ordenar_id)
         self.ui.velocidad.clicked.connect(self.ordenar_velocidad)
         self.ui.distancia.clicked.connect(self.ordenar_distancia)
+        
+    
+    
+    @Slot ()
+    def mostrar_grafo(self):
+        self.ui.salida_2.clear()
+        self.ui.salida_2.insertPlainText("Grafo: \n")
+        self.ui.salida_2.insertPlainText(self.administrar.grafo())
     
 
     @Slot()
@@ -54,21 +64,22 @@ class MainWindow(QMainWindow):
         pen = QPen()
         pen.setWidth(2)
         
-        for i in range(80):
-           r = randint(0, 255)
-           g =  randint(0, 255)
-           b = randint(0, 255)
-           color = QColor(r, g, b)
-           pen.setColor(color)
-           
-           origen_x = randint(0, 500)
-           origen_y = randint(0, 500)
-           destino_x = randint(0, 500)
-           destino_y = randint(0, 500)
-           
-           self.scene.addEllipse(origen_x, origen_y, 5, 5, pen)
-           self.scene.addEllipse(destino_x, destino_y, 5, 5, pen)
-           self.scene.addLine( origen_x+5, origen_y+5, destino_x, destino_y, pen)
+        for i in self.administrar:
+            r = Particula.red
+            g = Particula.green
+            b = Particula.blue
+
+            color = QColor(i.red, i.green, i.blue)
+            pen.setColor(color)
+            
+            origen_x = Particula.origen_x
+            origen_y = Particula.origen_y
+            destino_x = Particula.destino_x
+            destino_y = Particula.destino_y
+
+            self.scene.addEllipse(i.origen_x, i.origen_y, 5, 5, pen)
+            self.scene.addEllipse(i.destino_x, i.destino_y, 5, 5, pen)
+            self.scene.addLine( i.origen_x+5, i.origen_y+5, i.destino_x, i.destino_y, pen)
 
     @Slot()
     def limpiar(self):
@@ -226,8 +237,8 @@ class MainWindow(QMainWindow):
     @Slot()
     def click_mostrar(self):
         #self.particula.mostrar()
-        self.ui.salida.clear()
-        self.ui.salida.insertPlainText(str(self.administrar))
+        self.ui.salida_2.clear()
+        self.ui.salida_2.insertPlainText(str(self.administrar))
 
     
     

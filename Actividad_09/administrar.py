@@ -1,10 +1,12 @@
 import json
+from pprint import pformat
 from .particula import Particula 
 
 
 class Administrar:
     def __init__(self):
         self.administrar = []
+        self.graf_dic = dict()
 
     def __str__(self):
         return "".join(
@@ -62,5 +64,28 @@ class Administrar:
             self.administrar.sort(key=lambda particula: particula.velocidad,reverse=des)
         if ord == "distancia":
             self.administrar.sort(key=lambda particula: particula.distancia,reverse=des)
+    
+    def grafo(self):
+        for particula in self.administrar:
+            origen = (particula.origen_x,particula.origen_y)
+            destino = (particula.destino_x, particula.destino_y)
+            if origen in self.graf_dic:
+                if destino in self.graf_dic[origen]:
+                    pass 
+                else:
+                    self.graf_dic[origen].append((destino,round(particula.distancia,2)))
+            else:
+                self.graf_dic[origen] = [(destino,round(particula.distancia,2))]
 
-     
+            if destino in self.graf_dic:
+                if origen in self.graf_dic[destino]:
+                    pass
+                else:
+                    self.graf_dic[destino].append((origen,round(particula.distancia,2)))
+            else:
+                self.graf_dic[destino] = [(origen,round(particula.distancia,2))]
+        string = pformat(self.graf_dic, width=40) 
+        return(string)
+    
+    def borrar(self):
+        self.graf_dic.clear()
