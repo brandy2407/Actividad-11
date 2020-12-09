@@ -87,5 +87,50 @@ class Administrar:
         string = pformat(self.graf_dic, width=40) 
         return(string)
     
+    def profundidad(self, x, y):
+
+        vertice = (x, y)
+        visitados = []
+        pila = []
+        recorrido = []
+        visitados.append(vertice)
+        pila.append(vertice)
+
+        while len(pila) > 0:
+            vertice = pila[(len(pila)-1)]
+            recorrido.append(vertice)
+            pila.pop()
+
+            for adya in self.graf_dic[vertice]:
+                if adya[0] in visitados:
+                    pass 
+                else:
+                    visitados.append(adya[0])
+                    pila.append(adya[0])
+        string = pformat(recorrido, width=40) 
+        return string
+    
+    def amplitud (self, x, y):
+        vertice = (x, y)
+        visitados = []
+        cola = []
+        recorrido = []
+        visitados.append(vertice)
+        cola.append(vertice)
+
+        while len(cola) > 0:
+            vertice = cola[(len(cola)-1)]
+            recorrido.append(vertice)
+            cola.pop()
+
+            for adya in self.graf_dic[vertice]:
+                if adya[0] in visitados:
+                    pass 
+                else:
+                    visitados.append(adya[0])
+                    cola.insert(0,adya[0])
+        string = pformat(recorrido, width=40) 
+        return string
+        
     def borrar(self):
         self.graf_dic.clear()

@@ -20,6 +20,8 @@ class MainWindow(QMainWindow):
         self.ui.actionAbir.triggered.connect(self.action_abrir_archivo)
         self.ui.actionGuardar.triggered.connect(self.action_guardar_archivo)
         self.ui.actionGrafo.triggered.connect(self.mostrar_grafo)
+        self.ui.actionRecorrido.triggered.connect(self.amplitud_profundidad)
+        
 
         self.ui.mostrar_tabla_pushButton_2.clicked.connect(self.mostrar_tabla)
         self.ui.buscar_pushButton.clicked.connect(self.buscar_id)
@@ -35,7 +37,14 @@ class MainWindow(QMainWindow):
         self.ui.distancia.clicked.connect(self.ordenar_distancia)
         
     
-    
+    @Slot ()
+    def amplitud_profundidad(self):
+        self.ui.salida_2.clear()
+        self.ui.salida_2.insertPlainText("Profundidad: \n")
+        self.ui.salida_2.insertPlainText(self.administrar.profundidad(self.ui.origenx_spinBox.value(), self.ui.origeny_spinBox.value()))
+        self.ui.salida_2.insertPlainText("\n\nAmplitud: \n")
+        self.ui.salida_2.insertPlainText(self.administrar.amplitud(self.ui.origenx_spinBox.value(), self.ui.origeny_spinBox.value()))
+
     @Slot ()
     def mostrar_grafo(self):
         self.ui.salida_2.clear()
